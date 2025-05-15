@@ -1,5 +1,4 @@
-
-// Firebase config
+// Firebase config (replace this with your actual config if needed)
 const firebaseConfig = {
   apiKey: "AIzaSyAR6D8UStuhiAPKmvyoaRtwvotUszQbPqQ",
   authDomain: "hostello-11bd9.firebaseapp.com",
@@ -7,25 +6,24 @@ const firebaseConfig = {
   projectId: "hostello-11bd9",
   storageBucket: "hostello-11bd9.appspot.com",
   messagingSenderId: "344144011394",
-  appId: "1:344144011394:web:085edd9555b385203d49b",
-  measurementId: "G-VTZ6SKX7ZP"
+  appId: "1:344144011394:web:085edd9555b385203d49b"
 };
 
 const app = firebase.initializeApp(firebaseConfig);
 const db = firebase.database();
 
 function showHostForm() {
-  document.getElementById("hostForm").style.display = "block";
-  document.getElementById("userTypeSelect").style.display = "none";
-  document.getElementById("listingSection").style.display = "none";
-  document.getElementById("chatSection").style.display = "none";
+  document.getElementById("hostForm").classList.remove("hidden");
+  document.getElementById("userTypeSelect").classList.add("hidden");
+  document.getElementById("listingSection").classList.add("hidden");
+  document.getElementById("chatSection").classList.add("hidden");
 }
 
 function showTraveler() {
-  document.getElementById("listingSection").style.display = "block";
-  document.getElementById("userTypeSelect").style.display = "none";
-  document.getElementById("hostForm").style.display = "none";
-  document.getElementById("chatSection").style.display = "block";
+  document.getElementById("listingSection").classList.remove("hidden");
+  document.getElementById("userTypeSelect").classList.add("hidden");
+  document.getElementById("hostForm").classList.add("hidden");
+  document.getElementById("chatSection").classList.remove("hidden");
 }
 
 const form = document.getElementById("form");
@@ -54,14 +52,14 @@ form.addEventListener("submit", function (e) {
 db.ref("hostels").on("child_added", function(snapshot) {
   const data = snapshot.val();
   const card = document.createElement("div");
-  card.className = "card";
+  card.className = "bg-white p-4 rounded shadow";
   card.innerHTML = `
-    <img src="${data.photo}" alt="Hostel Image">
-    <h3>${data.name}</h3>
-    <p><strong>Location:</strong> ${data.location}</p>
-    <p><strong>Price:</strong> ${data.price}</p>
-    ${data.description ? `<p>${data.description}</p>` : ""}
-    ${data.amenities ? `<p><strong>Amenities:</strong> ${data.amenities}</p>` : ""}
+    <img src="${data.photo}" class="rounded mb-2" alt="Hostel Image">
+    <h3 class="text-lg font-bold">${data.name}</h3>
+    <p class="text-sm text-gray-600"><strong>Location:</strong> ${data.location}</p>
+    <p class="text-sm text-gray-600"><strong>Price:</strong> ${data.price}</p>
+    ${data.description ? `<p class="text-sm">${data.description}</p>` : ""}
+    ${data.amenities ? `<p class="text-sm text-gray-600"><strong>Amenities:</strong> ${data.amenities}</p>` : ""}
   `;
   listings.appendChild(card);
 });
