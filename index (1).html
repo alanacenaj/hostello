@@ -1,0 +1,56 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hostello</title>
+
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-database.js"></script>
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Hostello</h1>
+    <p>Connecting travelers with affordable hostels and unique stays.</p>
+  </header>
+
+  <main>
+    <section id="userTypeSelect">
+      <h2>Are you a...</h2>
+      <button onclick="showTraveler()">Traveler</button>
+      <button onclick="showHostForm()">Host</button>
+    </section>
+
+    <section id="hostForm" style="display: none;">
+      <h2>List Your Hostel</h2>
+      <form id="form">
+        <input type="text" id="hostelName" placeholder="Hostel Name" required />
+        <input type="text" id="location" placeholder="Location" required />
+        <input type="text" id="price" placeholder="Price per Night or 'Work Only'" required />
+        <textarea id="description" placeholder="Optional Description"></textarea>
+        <input type="text" id="amenities" placeholder="Optional Amenities (Wi-Fi, Food, etc.)" />
+        <input type="url" id="photo" placeholder="Image URL" />
+        <button type="submit">Submit Hostel</button>
+      </form>
+    </section>
+
+    <section id="listingSection" style="display: none;">
+      <h2>Available Hostels</h2>
+      <div id="listings"></div>
+    </section>
+
+    <section id="chatSection" style="display: none;">
+      <h2>Chat with Host</h2>
+      <div id="chatBox"></div>
+      <input type="text" id="chatInput" placeholder="Type your message" />
+      <button onclick="sendMessage()">Send</button>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
